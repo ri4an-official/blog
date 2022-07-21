@@ -58,17 +58,17 @@ class UserService {
     }
 
     check = async (accessToken) => {
-        const user = jwtService.validateAccess(accessToken)
-        if (!user) throw ApiError.Unauth('Token expired')
+        const res = jwtService.validateAccess(accessToken)
+        if (res.message) throw ApiError.Unauth(res.message)
 
-        return user
+        return res
     }
 
     refresh = async (refreshToken) => {
-        const user = jwtService.validateRefresh(refreshToken)
-        if (!user) throw ApiError.Unauth('Token expired')
+        const res = jwtService.validateRefresh(refreshToken)
+        if (res.message) throw ApiError.Unauth(res.message)
 
-        const newUser = await this.getById(user.id)
+        const newUser = await this.getById(res.id)
         const tokens = jwtService.generateTokens({ ...newUser })
 
         return {
