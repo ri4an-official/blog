@@ -1,5 +1,5 @@
 import { Tokens } from '../config.js'
-import pool from '../db.js'
+import postService from '../service/post.service.js'
 import userService from '../service/user.service.js'
 
 class PostController {
@@ -8,10 +8,8 @@ class PostController {
             await userService.isAuth(req.header(Tokens.Access))
 
             const { text, date, user_id } = req.body
-            const query =
-                'INSERT INTO post (text,date,user_id) VALUES ($1,$2,$3) RETURNING *'
-            const result = await pool.query(query, [text, date, user_id])
-            const post = result.rows[0]
+            const post = await postService.create(text, date, user_id)
+
             res.json(post)
         } catch (e) {
             next(e)
@@ -22,9 +20,21 @@ class PostController {
         try {
             await userService.isAuth(req.header(Tokens.Access))
 
-            const query = 'SELECT * FROM post'
-            const result = await pool.query(query)
-            const posts = result.rows
+            const posts = await postService.getAll()
+
+            res.json(posts)
+        } catch (e) {
+            next(e)
+        }
+    }
+
+    getUserPosts = async (req, res, next) => {
+        try {
+            await userService.isAuth(req.header(Tokens.Access))
+
+            const { id } = req.params
+            const posts = await postService.getUserPosts(id)
+
             res.json(posts)
         } catch (e) {
             next(e)
@@ -36,9 +46,8 @@ class PostController {
             await userService.isAuth(req.header(Tokens.Access))
 
             const { id } = req.params
-            const query = 'SELECT * FROM post WHERE id=$1'
-            const result = await pool.query(query, [id])
-            const post = result.rows[0]
+            const post = await postService.get(id)
+
             res.json(post)
         } catch (e) {
             next(e)
@@ -48,6 +57,12 @@ class PostController {
     update = async (req, res, next) => {
         try {
             await userService.isAuth(req.header(Tokens.Access))
+
+            const { id } = req.params
+            const { text, date } = req.params
+            const post = await postService.update(id, text, date)
+
+            res.json(post)
         } catch (e) {
             next(e)
         }
