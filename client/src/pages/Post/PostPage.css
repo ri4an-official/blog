@@ -1,0 +1,14 @@
+.post-page {
+}
+.title {
+	text-align: center;
+}
+.posts {
+	display: flex;
+	margin-left: 50px;
+}
+.post {
+	padding: 20px;
+	border: 1px solid darkgray;
+	border-radius: 7px;
+}

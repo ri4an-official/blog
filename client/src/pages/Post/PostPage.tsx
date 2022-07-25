@@ -1,10 +1,13 @@
 import Posts from '../../module/post/widget/Posts'
+import './PostPage.css'
 
 const PostPage = () => {
 	return (
-		<div>
-			<h1>Posts</h1>
-			<Posts />
+		<div className='post-page'>
+			<h1 className='title'>Posts</h1>
+			<div className='posts'>
+				<Posts />
+			</div>
 		</div>
 	)
 }
