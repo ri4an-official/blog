@@ -12,7 +12,7 @@ const Posts = () => {
 		getPostsFx()
 	}, [])
 
-	return <>{postsElement}</>
+	return <div>{postsElement}</div>
 }
 
 export default Posts

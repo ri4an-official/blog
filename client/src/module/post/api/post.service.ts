@@ -1,7 +1,7 @@
 import { mapToCamelCase } from './../../common/helpers'
 import { HttpMethod } from './../../common/config'
 import { fetchExtended } from '../../common/helpers'
-import { IPost } from '../types/Post.type'
+import { IPost } from '../types/IPost.type'
 import { postsConfig } from './config'
 
 class PostService {

@@ -1,4 +1,4 @@
-import { IPost } from './../types/Post.type'
+import { IPost } from '../types/IPost.type'
 import { createEffect, restore } from 'effector'
 import postService from '../api/post.service'
 
