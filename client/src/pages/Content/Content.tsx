@@ -1,13 +1,13 @@
 import React from 'react'
-import Posts from '../../components/Posts/Posts'
+import PostPage from '../Post/PostPage'
 
 const Content = () => {
-    return (
-        <div>
-            <h1>Content</h1>
-            <Posts />
-        </div>
-    )
+	return (
+		<div>
+			<h1>Content</h1>
+			<PostPage />
+		</div>
+	)
 }
 
 export default Content
