@@ -17,7 +17,7 @@ jobs:
               with:
                   node-version: ${{ matrix.node-version }}
             - run: cd server/
-            - run: npm i
-            - run: npm i -D @babel/preset-typescript
-            - run: npm start
-            - run: npm test
+            - run: yarn install
+            - run: yarn add -D @babel/preset-typescript
+            - run: yarn start
+            - run: yarn test
