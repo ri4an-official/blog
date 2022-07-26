@@ -1,14 +1,13 @@
 import { HttpMethod, Tokens } from './../../common/config'
-import { userConfig } from './config'
-import { fetchExtended, mapToCamelCase } from '../../common/helpers'
-import { IUser, UserData } from '../types/User.type'
+import { handleUserResponse, userConfig } from './config'
+import { fetchExtended } from '../../common/helpers'
+import { IUserData } from '../types/User.type'
 
 class UserService {
 	async getUser(id: number) {
 		const response = await fetchExtended(userConfig.GET + id)
-		const user: IUser = await response.json()
 
-		return mapToCamelCase(user)
+		return handleUserResponse(response)
 	}
 
 	async check(accessToken: string) {
@@ -16,7 +15,7 @@ class UserService {
 			[Tokens.Access]: accessToken,
 		})
 
-		return response.status
+		return handleUserResponse(response)
 	}
 
 	async refresh(refresh: string) {
@@ -24,33 +23,15 @@ class UserService {
 			[Tokens.Refresh]: refresh,
 		})
 
-		const accessToken = response.headers.get(Tokens.Access)
-		const refreshToken = response.headers.get(Tokens.Refresh)
-		const user: IUser = await response.json()
-
-		const result: UserData = {
-			tokens: { accessToken, refreshToken },
-			user,
-		}
-
-		return result
+		return handleUserResponse(response)
 	}
 
-	async login(userParam: IUser) {
+	async login(userParam: IUserData) {
 		const response = await fetchExtended(userConfig.LOGIN, HttpMethod.POST, {
 			...userParam,
 		})
 
-		const accessToken = response.headers.get(Tokens.Access)
-		const refreshToken = response.headers.get(Tokens.Refresh)
-		const user: IUser = await response.json()
-
-		const result: UserData = {
-			tokens: { accessToken, refreshToken },
-			user,
-		}
-
-		return result
+		return handleUserResponse(response)
 	}
 }
 export default new UserService()
