@@ -16,4 +16,8 @@ jobs:
             - uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
-            - run: cd server/ && npm i && npm i -D @babel/preset-typescript && npm start && npm test
+            - run: cd server/
+            - run: npm i
+            - run: npm i -D @babel/preset-typescript
+            - run: npm start
+            - run: npm test
