@@ -1,22 +1,15 @@
-export interface IUser {
+export interface IUserData {
 	id?: number
 	username: string
 	password: string
+}
+
+export interface IUser {
+	user: IUserData | null
+	isAuth: boolean
 }
 
 export interface ITokens {
 	accessToken: string | null
 	refreshToken: string | null
 }
-
-export interface UserData {
-	user: IUser
-	tokens: ITokens
-}
-
-export interface UserError {
-	message: string
-	errors: any[]
-}
-
-export type UserResponse = UserData | UserError
