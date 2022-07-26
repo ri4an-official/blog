@@ -1,4 +1,4 @@
-export const PORT = process.env.PORT ?? 8080,
+export const PORT = 8080,
 	BASE_URL = '/api/v1',
 	SALT = 3
 
