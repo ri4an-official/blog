@@ -6,7 +6,7 @@ on:
             - master
 
 jobs:
-    lint:
+    testing:
         runs-on: ubuntu-latest
         strategy:
             matrix:
