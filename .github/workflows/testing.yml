@@ -6,7 +6,7 @@ on:
             - master
 
 jobs:
-    testing:
+    server:
         runs-on: ubuntu-latest
         strategy:
             matrix:
@@ -16,4 +16,4 @@ jobs:
             - uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
-            - run: cd server/ && yarn install && yarn dev && yarn test
+            - run: cd server/ && yarn install && yarn test
