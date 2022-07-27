@@ -18,8 +18,8 @@ const app = express()
 
 const startApp = async () => {
 	try {
-		const initText = `server started on http://localhost:${PORT}${BASE_URL}`
-		app.listen(PORT, () => console.log(initText))
+		const text = `server started on http://localhost:${PORT}${BASE_URL}`
+		app.listen(PORT, () => console.log(text))
 	} catch (e) {
 		console.log(e)
 	} finally {
