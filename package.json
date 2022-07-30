@@ -1,6 +1,7 @@
 {
     "name": "blog",
     "scripts": {
-        "start": "cd server && yarn start & cd client && yarn start"
+        "start": "cd server && yarn start & cd client && yarn start",
+        "test": "cd server && yarn start & cd server && yarn test"
     }
 }
