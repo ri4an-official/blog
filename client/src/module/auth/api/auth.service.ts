@@ -1,9 +1,9 @@
-import { HttpMethod, Tokens } from './../../common/config'
+import { HttpMethod, Tokens } from '../../common/config'
 import { handleUserResponse, userConfig } from './config'
 import { fetchExtended } from '../../common/helpers'
 import { IUserData } from '../types/User.type'
 
-class UserService {
+class AuthService {
 	async getUser(id: number) {
 		const response = await fetchExtended(userConfig.GET + id)
 
@@ -34,4 +34,4 @@ class UserService {
 		return handleUserResponse(response)
 	}
 }
-export default new UserService()
+export default new AuthService()

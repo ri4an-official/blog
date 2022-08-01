@@ -7,9 +7,10 @@ export interface UserDone {
 }
 
 export interface UserError {
+	user: null
 	message: string
 	status: number
-	errors?: any[] //? maybe
+	errors?: any[] //? maybe delete
 }
 
 export type UserResponse = UserDone | UserError

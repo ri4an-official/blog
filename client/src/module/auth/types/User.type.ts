@@ -5,7 +5,7 @@ export interface IUserData {
 }
 
 export interface IUser {
-	user: IUserData | null
+	data: IUserData | null
 	isAuth: boolean
 }
 

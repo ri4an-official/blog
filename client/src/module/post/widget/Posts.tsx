@@ -1,18 +1,13 @@
-import { useStoreMap } from 'effector-react'
-import { useEffect } from 'react'
-import { $posts, getPostsFx } from '../store/store'
+import { IPost } from '../types/IPost.type'
+import { Children } from '../../common/types'
 import Post from './Post'
 
-const Posts = () => {
-	const postsElement = useStoreMap($posts, (posts) =>
-		posts.map((p) => <Post key={p.id}>{p}</Post>)
-	)
-
-	useEffect(() => {
-		getPostsFx()
-	}, [])
-
-	return <div>{postsElement}</div>
-}
+const Posts = ({ children }: Children<IPost[]>) => (
+	<div className='posts'>
+		{children.map((p) => (
+			<Post key={p.id}>{p}</Post>
+		))}
+	</div>
+)
 
 export default Posts

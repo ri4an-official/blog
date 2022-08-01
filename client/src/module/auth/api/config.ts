@@ -1,5 +1,5 @@
-import { UserDone, UserError, UserResponse } from './../types/Response.type'
-import { BASE_URL, HttpStatus, Tokens } from './../../common/config'
+import { UserDone, UserError, UserResponse } from '../types/Response.type'
+import { BASE_URL, HttpStatus, Tokens } from '../../common/config'
 import { mapToCamelCase } from '../../common/helpers'
 import { IUserData } from '../types/User.type'
 
@@ -23,7 +23,10 @@ export const handleUserResponse = async (res: Response): Promise<UserResponse> =
 	const refreshToken = res.headers.get(Tokens.Refresh)
 	const user: IUserData = await res.json()
 
-	if (!accessToken || !refreshToken) return { user, status }
+	if (!accessToken || !refreshToken) {
+		const checkUser = { user, status }
+		return mapToCamelCase(checkUser)
+	}
 
 	const userData: UserDone = {
 		tokens: { accessToken, refreshToken },

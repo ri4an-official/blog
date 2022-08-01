@@ -1,13 +1,10 @@
-import React from 'react'
-import PostPage from '../Post/PostPage'
+import MainRoutes from '../../components/Router/Routes'
 
-const Content = () => {
-	return (
-		<div>
-			<h1>Content</h1>
-			<PostPage />
-		</div>
-	)
-}
+const Content = () => (
+	<div>
+		<h1>Content</h1>
+		<MainRoutes />
+	</div>
+)
 
 export default Content

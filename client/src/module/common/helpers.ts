@@ -1,12 +1,12 @@
 import { Tokens } from './config'
 import storage from './storage'
 
-export const fetchExtended = async (
+export async function fetchExtended(
 	url: string,
 	method = 'GET',
 	body: any = null,
-	headers = { 'Content-Type': 'application/json' }
-): Promise<Response> => {
+	headers: any = { 'Content-Type': 'application/json' }
+) {
 	const accessToken = storage.get(Tokens.Access)
 
 	if (accessToken)
@@ -15,12 +15,20 @@ export const fetchExtended = async (
 			[Tokens.Access]: accessToken,
 		}
 
-	const response = await fetch(url, { body, method, headers })
+	const options = body
+		? {
+				method,
+				headers,
+				body,
+		  }
+		: { method, headers }
+
+	const response = await fetch(url, options)
 
 	return response
 }
 
-export const mapToCamelCase = <T extends Object>(obj: T): T => {
+export function mapToCamelCase<T extends Object>(obj: T): T {
 	const toCamelCase = (str: string) =>
 		str
 			.toLowerCase()
