@@ -1,5 +1,5 @@
-import { Tokens } from './config'
 import { ITokens } from '../auth/types/User.type'
+import { Tokens } from './config'
 
 class Storage {
 	set = (name: string, token?: string | null) =>

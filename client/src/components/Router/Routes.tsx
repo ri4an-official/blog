@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
-import Login from '../../module/auth/widget/Login'
-import Profile from '../../module/auth/widget/Profile'
+import Login from '../../module/auth/ui/widget/Login'
+import Profile from '../../module/auth/ui/widget/Profile'
 import PostPage from '../../pages/Post/PostPage'
 import { Paths } from './config'
 import WithAuth from './ProtectedRoute'

@@ -1,7 +1,9 @@
-import React from 'react'
+import Profile from '../../module/auth/ui/widget/Profile'
 
-const Header = () => {
-    return <div>Header</div>
-}
+const Header = () => (
+	<div>
+		<Profile />
+	</div>
+)
 
 export default Header

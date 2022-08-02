@@ -1,6 +1,5 @@
-import { UserDone, UserError, UserResponse } from '../types/Response.type'
 import { BASE_URL, HttpStatus, Tokens } from '../../common/config'
-import { mapToCamelCase } from '../../common/helpers'
+import { UserDone, UserError, UserResponse } from '../types/Response.type'
 import { IUserData } from '../types/User.type'
 
 export const userConfig = {
@@ -25,7 +24,7 @@ export const handleUserResponse = async (res: Response): Promise<UserResponse> =
 
 	if (!accessToken || !refreshToken) {
 		const checkUser = { user, status }
-		return mapToCamelCase(checkUser)
+		return checkUser
 	}
 
 	const userData: UserDone = {
@@ -34,5 +33,5 @@ export const handleUserResponse = async (res: Response): Promise<UserResponse> =
 		status,
 	}
 
-	return mapToCamelCase(userData)
+	return userData
 }

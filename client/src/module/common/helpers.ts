@@ -19,13 +19,13 @@ export async function fetchExtended(
 		? {
 				method,
 				headers,
-				body,
+				body: JSON.stringify(body),
 		  }
 		: { method, headers }
 
-	const response = await fetch(url, options)
+	const res = await fetch(url, options)
 
-	return response
+	return res
 }
 
 export function mapToCamelCase<T extends Object>(obj: T): T {
