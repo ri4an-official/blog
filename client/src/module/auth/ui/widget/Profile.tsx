@@ -1,19 +1,24 @@
-import { Button } from '@mui/material'
+import { Box, Button } from '@mui/material'
 import { useStore } from 'effector-react'
-import { $user } from '../../store'
+import { $user, logoutFx } from '../../store'
 
 const Profile = () => {
-	const logout = async () => {
-		// return await logoutFx()
-	}
-	const username = useStore($user).data?.username
-	return (
-		<div>
-			<strong className='username'>{username}</strong>
-			<Button color='error' variant='outlined' onClick={logout}>
+	const user = useStore($user)
+
+	const logout = async () => await logoutFx()
+
+	return user.isAuth ? (
+		<Box
+			sx={{ m: 2 }}
+			display='flex'
+			justifyContent='flex-end'
+			alignItems='center'
+		>
+			<h3 className='username'>{user.data?.username}</h3>
+			<Button sx={{ ml: 2 }} color='error' variant='outlined' onClick={logout}>
 				Logout
 			</Button>
-		</div>
-	)
+		</Box>
+	) : null
 }
 export default Profile

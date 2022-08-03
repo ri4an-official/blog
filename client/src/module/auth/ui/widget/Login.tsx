@@ -1,23 +1,22 @@
 import { Button, FormGroup, Grid, TextField } from '@mui/material'
-import { useNavigate } from 'react-router-dom'
-import { HttpStatus } from '../../../common/config'
+import { useStore } from 'effector-react'
+import { Navigate } from 'react-router-dom'
+import { Paths } from '../../../../components/Router/config'
 import { useInput } from '../../../common/hooks/useInput'
-import { loginFx } from '../../store'
+import { $isAuth, loginFx } from '../../store'
 
 const Login = () => {
-	const nav = useNavigate()
+	const isAuth = useStore($isAuth)
 	const username = useInput()
 	const password = useInput()
 
-	const submit = async () => {
-		const resp = await loginFx({
+	const submit = async () =>
+		await loginFx({
 			username: username.value,
 			password: password.value,
 		})
-		if (resp.status === HttpStatus.OK) nav(-1)
-	}
 
-	return (
+	return !isAuth ? (
 		<Grid
 			display='flex'
 			justifyContent='center'
@@ -60,6 +59,8 @@ const Login = () => {
 				</Button>
 			</div>
 		</Grid>
+	) : (
+		<Navigate to={Paths.POSTS} />
 	)
 }
 export default Login
