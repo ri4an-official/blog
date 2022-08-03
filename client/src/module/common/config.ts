@@ -6,14 +6,14 @@ export enum Tokens {
 	Refresh = 'X-Refresh',
 }
 
-export enum HttpMethod {
+export enum Method {
 	GET = 'GET',
 	POST = 'POST',
 	PUT = 'PUT',
 	DELETE = 'DELETE',
 }
 
-export enum HttpStatus {
+export enum Status {
 	OK = 200,
 	UN_AUTH = 401,
 	NOT_FOUND = 404,

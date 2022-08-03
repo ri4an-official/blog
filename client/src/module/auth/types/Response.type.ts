@@ -6,11 +6,11 @@ export interface UserDone {
 	tokens?: ITokens
 }
 
-export interface UserError {
+export interface UserFail {
 	user: null
 	message: string
 	status: number
 	errors?: any[] //? maybe delete
 }
 
-export type UserResponse = UserDone | UserError
+export type UserResponse = UserDone | UserFail
