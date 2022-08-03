@@ -1,11 +1,11 @@
-import express from 'express'
 import cors from 'cors'
 import { config } from 'dotenv'
+import express from 'express'
 import { BASE_URL, CORS, PORT } from './config.js'
-import authRouter from './router/auth.router.js'
-import createRouter from './router/create.router.js'
 import postController from './controller/post.controller.js'
 import errorHandler from './middleware/error.middleware.js'
+import authRouter from './router/auth.router.js'
+import createRouter from './router/create.router.js'
 
 config()
 
