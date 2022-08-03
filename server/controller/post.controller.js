@@ -18,7 +18,7 @@ class PostController {
 
 	getAll = async (req, res, next) => {
 		try {
-			// await userService.verify(req.header(Tokens.Access))
+			await userService.verify(req.header(Tokens.Access))
 
 			const posts = await postService.getAll()
 

@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt'
-import { SALT, Status } from '../config.js'
+import { Status } from '../config.js'
 import pool from '../db.js'
 import UserDto from '../dtos/user.dto.js'
 import ApiError from '../helper/api.error.js'
@@ -69,11 +69,12 @@ class UserService {
 		if (res.message) throw ApiError.Unauth(res.message)
 
 		const newUser = await this.getById(res.id)
-		const tokens = jwtService.generateTokens({ ...newUser })
+		const user = new UserDto(newUser)
+		const tokens = jwtService.generateTokens({ ...user })
 
 		return {
 			...tokens,
-			newUser,
+			user,
 		}
 	}
 
@@ -91,6 +92,7 @@ class UserService {
 		const foundUser = result.rows[0]
 		return foundUser
 	}
+
 	get = async (username) => {
 		const query = 'SELECT * FROM person WHERE username=$1'
 		const result = await pool.query(query, [username])
