@@ -1,10 +1,10 @@
-import MainRoutes from '../../components/Router/Routes'
+import Routing from 'entities/router'
 import Header from '../Header/Header'
 
 const Content = () => (
 	<div>
 		<Header />
-		<MainRoutes />
+		<Routing />
 	</div>
 )
 

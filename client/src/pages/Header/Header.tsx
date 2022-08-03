@@ -1,4 +1,4 @@
-import Profile from '../../module/auth/ui/widget/Profile'
+import Profile from '../../components/user/widget/Profile'
 
 const Header = () => (
 	<div>

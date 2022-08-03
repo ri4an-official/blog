@@ -1,7 +1,7 @@
+import Posts from 'components/post/ui/Posts'
 import { useStore } from 'effector-react'
+import { $posts, getPostsFx } from 'features/post/logic'
 import { useEffect } from 'react'
-import { $posts, getPostsFx } from '../../module/post/store'
-import Posts from '../../module/post/widget/Posts'
 import './PostPage.css'
 
 const PostPage = () => {
