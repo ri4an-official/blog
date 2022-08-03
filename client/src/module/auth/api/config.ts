@@ -1,8 +1,9 @@
-import { BASE_URL, HttpStatus, Tokens } from '../../common/config'
-import { UserDone, UserError, UserResponse } from '../types/Response.type'
+import { BASE_URL, Status, Tokens } from '../../common/config'
+import { postRoutes } from '../../post/api/config'
+import { UserDone, UserFail, UserResponse } from '../types/Response.type'
 import { IUserData } from '../types/User.type'
 
-export const userConfig = {
+export const authRoutes = {
 	GET: `${BASE_URL}/oauth/user`,
 	LOGIN: `${BASE_URL}/oauth/login`,
 	REGISTER: `${BASE_URL}/oauth/register`,
@@ -11,11 +12,17 @@ export const userConfig = {
 	LOGOUT: `${BASE_URL}/oauth/logout`,
 }
 
+export const privateRoutes = [
+	postRoutes.GET_ALL,
+	authRoutes.CHECK,
+	authRoutes.LOGOUT,
+]
+
 export const handleUserResponse = async (res: Response): Promise<UserResponse> => {
 	const status = res.status
-	if (status !== HttpStatus.OK) {
-		const userError: UserError = await res.json()
-		return { ...userError, status } as UserError
+	if (status !== Status.OK) {
+		const userError: UserFail = await res.json()
+		return { ...userError, status } as UserFail
 	}
 
 	const accessToken = res.headers.get(Tokens.Access)

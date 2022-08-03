@@ -13,7 +13,6 @@ const App = () => {
 	return (
 		<div id='app'>
 			<Styles />
-			<Header />
 			<Content />
 		</div>
 	)
