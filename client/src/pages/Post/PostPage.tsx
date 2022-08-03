@@ -1,6 +1,6 @@
 import { useStore } from 'effector-react'
 import { useEffect } from 'react'
-import { $posts, getPostsFx } from '../../module/post/store/store'
+import { $posts, getPostsFx } from '../../module/post/store'
 import Posts from '../../module/post/widget/Posts'
 import './PostPage.css'
 
