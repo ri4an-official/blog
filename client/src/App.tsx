@@ -1,9 +1,8 @@
 import { useEffect } from 'react'
 import './App.css'
 import Styles from './components/Styles/Styles'
-import { initFx } from './module/init/store'
+import { initFx } from './module/app/store'
 import Content from './pages/Content/Content'
-import Header from './pages/Header/Header'
 
 const App = () => {
 	useEffect(() => {
