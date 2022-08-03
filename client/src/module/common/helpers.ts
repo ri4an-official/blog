@@ -1,3 +1,4 @@
+import { privateRoutes } from '../auth/api/config'
 import { Tokens } from './config'
 import storage from './storage'
 
@@ -5,16 +6,15 @@ export async function fetchExtended(
 	url: string,
 	method = 'GET',
 	body: any = null,
-	headers: any = { 'Content-Type': 'application/json' }
+	headers: Record<string, string> = {}
 ) {
-	const accessToken = storage.get(Tokens.Access)
+	let initHeaders: Record<string, string> = {
+		'Content-Type': 'application/json',
+	}
+	if (privateRoutes.includes(url))
+		initHeaders = { ...initHeaders, [Tokens.Access]: storage.getAccess() }
 
-	if (accessToken)
-		headers = {
-			...headers,
-			[Tokens.Access]: accessToken,
-		}
-
+	headers = { ...headers, ...initHeaders }
 	const options = body
 		? {
 				method,
