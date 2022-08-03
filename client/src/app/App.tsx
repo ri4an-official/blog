@@ -1,5 +1,5 @@
-import { initFx } from 'features/app/logic'
-import Content from 'pages/Content/Content'
+import { initFx } from 'feature/app/logic'
+import Content from 'page/Content'
 import { useEffect } from 'react'
 import Styles from 'shared/ui/Styles/Styles'
 import './App.css'

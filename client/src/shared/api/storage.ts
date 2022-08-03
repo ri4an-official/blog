@@ -1,6 +1,5 @@
-import { ITokens } from 'entities/user/types/User.type'
+import { ITokens } from 'entity/user'
 import { Tokens } from 'shared/lib/config'
-
 class Storage {
 	set = (name: string, token?: string | null) =>
 		localStorage.setItem(name, token ?? '')
