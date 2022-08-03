@@ -1,7 +1,7 @@
 import { createEffect, restore } from 'effector'
 import { IPost } from 'entity/post'
 import { authFlowFx } from 'feature/auth/logic'
-import postService from '../api/post.service'
+import postService from '../api'
 
 export const getPostsFx = createEffect(async () => {
 	await authFlowFx()

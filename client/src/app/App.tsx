@@ -1,7 +1,7 @@
-import { initFx } from 'feature/app/logic'
 import Content from 'page/Content'
+import { initFx } from 'process/app'
 import { useEffect } from 'react'
-import Styles from 'shared/ui/Styles/Styles'
+import Styles from 'shared/ui/Styles'
 import './App.css'
 
 const App = () => {
