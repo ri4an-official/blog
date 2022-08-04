@@ -1,5 +1,5 @@
 import { IPost } from 'entity/post'
-import { Children } from 'shared/ui/types'
+import { Children } from 'shared/lib/ui/types'
 import Post from './Post'
 
 const Posts = ({ children }: Children<IPost[]>) => (

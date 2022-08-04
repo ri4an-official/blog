@@ -1,7 +1,7 @@
 import Content from 'page/Content'
 import { initFx } from 'process/app'
 import { useEffect } from 'react'
-import Styles from 'shared/ui/Styles'
+import Styles from 'shared/lib/ui/Styles'
 import './App.css'
 
 const App = () => {

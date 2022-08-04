@@ -1,4 +1,4 @@
-import Profile from 'component/user/widget/Profile'
+import { Profile } from 'components/auth'
 
 const Header = () => (
 	<div>

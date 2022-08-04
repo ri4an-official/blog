@@ -1,5 +1,5 @@
 import { privateRoutes } from 'feature/auth/api/config'
-import { Tokens } from 'shared/lib/config'
+import { Tokens } from 'shared/lib/http'
 import storage from './storage'
 
 export async function fetchExtended(

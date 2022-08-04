@@ -1,9 +1,8 @@
-import Login from 'component/user/widget/Login'
-import Profile from 'component/user/widget/Profile'
+import { Login, Profile } from 'components/auth'
 import { Paths } from 'entity/router'
 import PostPage from 'page/Post'
 import { Route, Routes } from 'react-router-dom'
-import NotFound from 'shared/ui/NotFound'
+import NotFound from 'shared/lib/ui/NotFound'
 import ProtectedRoute from './ProtectedRoute'
 
 const Routing = () => (

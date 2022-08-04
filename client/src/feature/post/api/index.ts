@@ -1,6 +1,6 @@
 import { IPost } from 'entity/post'
 import { fetchExtended, mapToCamelCase } from 'shared/api/helpers'
-import { Method } from 'shared/lib/config'
+import { Method } from 'shared/lib/http'
 import { postRoutes } from './config'
 
 class PostService {

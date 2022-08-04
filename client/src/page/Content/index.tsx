@@ -1,4 +1,4 @@
-import Routing from 'component/router'
+import Routing from 'components/router'
 import Header from '../Header'
 
 const Content = () => (

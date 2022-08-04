@@ -1,22 +1,20 @@
-import Posts from 'component/post/Posts'
-import { useStore } from 'effector-react'
+import { Posts } from 'components/post'
+import { useStoreMap } from 'effector-react'
 import { $posts, getPostsFx } from 'feature/post/logic'
 import { useEffect } from 'react'
 import './PostPage.css'
 
 const PostPage = () => {
-	const posts = useStore($posts)
+	const ePosts = useStoreMap($posts, (posts) => <Posts>{posts}</Posts>)
 
 	useEffect(() => {
 		getPostsFx()
 	}, [])
 
 	return (
-		<div className='post-page'>
-			<h1 className='title'>Posts</h1>
-			<div className='posts'>
-				<Posts>{posts}</Posts>
-			</div>
+		<div>
+			<h1>Posts</h1>
+			{ePosts}
 		</div>
 	)
 }

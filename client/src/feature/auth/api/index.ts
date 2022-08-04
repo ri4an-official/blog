@@ -1,7 +1,7 @@
 import { IUserData } from 'entity/user'
 import { fetchExtended } from 'shared/api/helpers'
 import storage from 'shared/api/storage'
-import { Method, Tokens } from 'shared/lib/config'
+import { Method, Tokens } from 'shared/lib/http'
 import { authRoutes, handleUserResponse } from './config'
 
 class AuthService {

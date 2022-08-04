@@ -1,6 +1,6 @@
 import { IUserData, UserDone, UserFail, UserResponse } from 'entity/user'
 import { postRoutes } from 'feature/post/api/config'
-import { BASE_URL, Status, Tokens } from 'shared/lib/config'
+import { BASE_URL, Status, Tokens } from 'shared/lib/http'
 
 export const authRoutes = {
 	GET: `${BASE_URL}/oauth/user`,
