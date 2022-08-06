@@ -5,11 +5,9 @@ export function useInput(initValue = '') {
 	const [error, setError] = useState<null | string>(null)
 
 	useEffect(() => {
-		if (value.length <= 6) setError('Min 6')
-		else if (value.includes(' ')) setError('Without "Space"')
-		else if (value.includes('\t')) setError('Without "Tab"')
-
-		setError(null)
+		if (value.length < 5) setError('Min 5')
+		else if (value.includes(' ')) setError('Without "Spaces"')
+		else setError(null)
 	}, [value])
 
 	return {

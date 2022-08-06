@@ -31,23 +31,23 @@ const Login = () => {
 				<FormGroup>
 					<TextField
 						label='Username'
-						helperText={username.error}
 						value={username.value}
 						onChange={username.onChange}
 						sx={{ mt: 2, mb: 2 }}
+						helperText={username.error}
+						error={!!username.error}
 					/>
-					<span className='error'>{username.error}</span>
 				</FormGroup>
 				<FormGroup>
 					<TextField
 						label='Password'
-						helperText={password.error}
 						value={password.value}
 						onChange={password.onChange}
 						sx={{ mb: 2 }}
 						type='password'
+						helperText={password.error}
+						error={!!password.error}
 					/>
-					<span className='error'>{password.error}</span>
 				</FormGroup>
 				<Button
 					color='primary'
