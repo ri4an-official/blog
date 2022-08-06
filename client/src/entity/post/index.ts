@@ -4,3 +4,7 @@ export interface IPost {
 	date: string
 	userId: string
 }
+export interface IPostError {
+	message: string
+	errors: any[] //? maybe delete?
+}

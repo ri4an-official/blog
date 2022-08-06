@@ -1,4 +1,4 @@
-import { privateRoutes } from 'feature/auth/api/config'
+import { privateRoutes } from 'api/auth/config'
 import { Tokens } from 'shared/lib/http'
 import storage from './storage'
 

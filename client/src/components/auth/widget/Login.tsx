@@ -1,7 +1,7 @@
 import { Button, FormGroup, Grid, TextField } from '@mui/material'
 import { useStore } from 'effector-react'
-import { Paths } from 'entity/router'
-import { $isAuth, loginFx } from 'feature/auth/logic'
+import { RoutePath } from 'entity/router'
+import { $isAuth, loginFx } from 'feature/auth'
 import { Navigate } from 'react-router-dom'
 import { useInput } from 'shared/lib/hooks/useInput'
 
@@ -60,7 +60,7 @@ const Login = () => {
 			</div>
 		</Grid>
 	) : (
-		<Navigate to={Paths.POSTS} />
+		<Navigate to={RoutePath.POSTS} />
 	)
 }
 export default Login

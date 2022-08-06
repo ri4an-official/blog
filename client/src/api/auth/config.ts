@@ -1,5 +1,5 @@
 import { IUserData, UserDone, UserFail, UserResponse } from 'entity/user'
-import { postRoutes } from 'feature/post/api/config'
+import { postRoutes } from 'api/post/config'
 import { BASE_URL, Status, Tokens } from 'shared/lib/http'
 
 export const authRoutes = {

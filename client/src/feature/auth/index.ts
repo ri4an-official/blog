@@ -1,8 +1,8 @@
+import authService from 'api/auth'
 import { createEffect, createEvent, createStore } from 'effector'
 import { IUser, IUserData, UserDone, UserFail } from 'entity/user'
 import storage from 'shared/api/storage'
 import { Status } from 'shared/lib/http'
-import authService from '../api'
 
 const initUser: IUser = {
 	data: null,

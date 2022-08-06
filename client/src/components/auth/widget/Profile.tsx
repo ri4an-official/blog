@@ -1,6 +1,6 @@
 import { Box, Button } from '@mui/material'
 import { useStore } from 'effector-react'
-import { $user, logoutFx } from 'feature/auth/logic'
+import { $user, logoutFx } from 'feature/auth'
 
 const Profile = () => {
 	const user = useStore($user)

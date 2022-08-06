@@ -1,12 +1,10 @@
+import postService from 'api/post'
 import { createEffect, restore } from 'effector'
 import { IPost } from 'entity/post'
-import { authFlowFx } from 'feature/auth/logic'
-import postService from '../api'
+import { authFlowFx } from 'feature/auth'
+import { Status } from 'shared/lib/http'
 
-export const getPostsFx = createEffect(async () => {
-	await authFlowFx()
-	return await postService.getAll()
-})
+export const getPostsFx = createEffect(async () => await postService.getAll())
 
 export const $posts = restore(getPostsFx.doneData, [])
 

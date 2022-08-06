@@ -1,6 +1,6 @@
-export enum Paths {
+export enum RoutePath {
 	POSTS = '/',
-	AUTH = '/auth',
+	LOGIN = '/login',
 	PROFILE = '/profile',
 	SELECTED_POST = '/posts/:id',
 	NOT_FOUND = '*',

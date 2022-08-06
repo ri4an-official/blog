@@ -1,6 +1,4 @@
-import { createEffect } from 'effector'
-import { authFlowFx } from 'feature/auth/logic'
+import { attach } from 'effector'
+import { authFlowFx } from 'feature/auth'
 
-export const initFx = createEffect(async () => {
-	await authFlowFx()
-})
+export const initFx = attach({ effect: authFlowFx })

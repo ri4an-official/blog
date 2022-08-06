@@ -1,12 +1,12 @@
 import { useStore } from 'effector-react'
-import { Paths } from 'entity/router'
-import { $isAuth } from 'feature/auth/logic'
+import { RoutePath } from 'entity/router'
+import { $isAuth } from 'feature/auth'
 import { Navigate, Outlet } from 'react-router-dom'
 
 const ProtectedRoute = () => {
 	const isAuth = useStore($isAuth)
 
-	return isAuth ? <Outlet /> : <Navigate to={Paths.AUTH} />
+	return isAuth ? <Outlet /> : <Navigate to={RoutePath.LOGIN} />
 }
 
 export default ProtectedRoute
