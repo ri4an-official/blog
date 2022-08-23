@@ -1,7 +1,8 @@
 import authService from 'api/auth'
 import { createEffect, createEvent, createStore } from 'effector'
-import { IUser, IUserData, UserDone, UserFail } from 'entity/user'
+import { IUser, IUserData, UserDone } from 'entity/user'
 import storage from 'shared/api/storage'
+import { userDto } from 'shared/lib/dto'
 import { Status } from 'shared/lib/http'
 
 const initUser: IUser = {
@@ -15,12 +16,12 @@ export const $isAuth = $user.map((u) => u.isAuth)
 const setUser = createEvent<IUserData>()
 $user.on(setUser, (user, data) => ({ ...user, data }))
 
-const checkFx = createEffect(async () => await authService.check())
+const checkFx = createEffect(async () => {
+	const resp = await authService.check()
+	return userDto(resp)
+})
 
-$user.on(checkFx.doneData, (user, resp) => ({
-	...user,
-	data: resp.user,
-}))
+$user.on(checkFx.doneData, (_, user) => user)
 
 const refreshFx = createEffect(async () => {
 	const res = await authService.refresh()
@@ -28,16 +29,12 @@ const refreshFx = createEffect(async () => {
 	if (res.status === Status.OK) {
 		const doneRes = res as UserDone
 		storage.saveTokens(doneRes.tokens)
-		return doneRes
+		return userDto(doneRes)
 	}
 
-	const failRes = res as UserFail
-	return failRes
+	return userDto(res)
 })
-$user.on(refreshFx.doneData, (user, resp) => ({
-	data: resp.user,
-	isAuth: resp.status === Status.OK,
-}))
+$user.on(refreshFx.doneData, (_, user) => user)
 
 export const loginFx = createEffect(async (user: IUserData) => {
 	const res = await authService.login(user)
@@ -45,38 +42,34 @@ export const loginFx = createEffect(async (user: IUserData) => {
 	if (res.status === Status.OK) {
 		const doneRes = res as UserDone
 		storage.saveTokens(doneRes.tokens)
-		return doneRes
+		return userDto(doneRes)
 	}
 
-	const failRes = res as UserFail
-	return failRes
+	return userDto(res)
 })
-$user.on(loginFx.doneData, (user, resp) => ({
-	...user,
-	data: resp.user,
-	isAuth: resp.status === Status.OK,
-}))
+$user.on(loginFx.doneData, (_, user) => user)
 
 export const logoutFx = createEffect(() => {
 	storage.clear()
 })
-$user.on(logoutFx.done, () => ({ data: null, isAuth: false }))
+$user.reset(logoutFx.done)
 
 export const authFlowFx = createEffect(async () => {
-	if (!storage.getAccess()) return null
+	const unauthUser: IUser = {
+		data: null,
+		isAuth: false,
+	}
 
-	const resp = await checkFx()
-	if (resp.status !== Status.UN_AUTH) return resp
+	if (!storage.getAccess()) return unauthUser
 
-	const respRefresh = await refreshFx()
-	if (respRefresh.status !== Status.UN_AUTH) return respRefresh
+	const check = await checkFx()
+	if (check.isAuth) return check
+
+	const refresh = await refreshFx()
+	if (refresh.isAuth) return refresh
 
 	await logoutFx()
 
-	return null
+	return unauthUser
 })
-$user.on(authFlowFx.doneData, (user, resp) => ({
-	...user,
-	...resp?.user,
-	isAuth: resp?.status === Status.OK,
-}))
+$user.on(authFlowFx.doneData, (_, user) => user)
