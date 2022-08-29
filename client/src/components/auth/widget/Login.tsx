@@ -9,22 +9,23 @@ import { useInput } from 'shared/lib/hooks/useInput'
 
 const Login = () => {
 	const isAuth = useStore($isAuth)
-	const loginInp = useInput()
-	const passwordInp = useInput()
+	const login = useInput()
+	const password = useInput()
 
 	const [visible, setVisible] = useState(false)
-	const type = useMemo(() => (visible ? 'text' : 'password'), [visible])
 	const toggle = () => setVisible((v) => !v)
 
+	const type = useMemo(() => (visible ? 'text' : 'password'), [visible])
+
 	const disabled = useMemo(
-		() => loginInp.error || passwordInp.error,
-		[passwordInp.error, loginInp.error]
+		() => login.error || password.error,
+		[password.error, login.error]
 	)
 
 	const submit = async () =>
 		await loginFx({
-			username: loginInp.value,
-			password: passwordInp.value,
+			username: login.value,
+			password: password.value,
 		})
 
 	return !isAuth ? (
@@ -40,18 +41,14 @@ const Login = () => {
 			<div>
 				<strong>Login</strong>
 				<FormGroup>
-					<TextField
-						label='Username'
-						sx={{ mt: 2, mb: 2 }}
-						{...loginInp}
-					/>
+					<TextField label='Username' sx={{ mt: 2, mb: 2 }} {...login} />
 				</FormGroup>
 				<FormGroup>
 					<TextField
 						label='Password'
 						type={type}
 						sx={{ mb: 2 }}
-						{...passwordInp}
+						{...password}
 					/>
 					<IconButton
 						aria-label='toggle password visibility'
