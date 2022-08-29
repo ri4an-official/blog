@@ -17,7 +17,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: |
-          cd server
+          cd server/
           yarn
           yarn start
 
@@ -33,6 +33,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: |
-          cd server
+          cd server/
           yarn
           yarn test
